@@ -1,0 +1,17 @@
+/**
+ * Created by dell on 2018/3/20.
+ */
+import {playMode} from 'common/js/config'
+
+const state = {
+  singer: {},
+  playing: false,
+  fullScreen: false,
+  playlist: [],
+  sequenceList: [],
+  mode: playMode.sequence,
+  currentIndex: -1,
+  disc: {},
+  topList: {}
+}
+export default state
