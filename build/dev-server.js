@@ -12,6 +12,9 @@ var webpack = require('webpack')
 var proxyMiddleware = require('http-proxy-middleware')
 var webpackConfig = require('./webpack.dev.conf')
 var axios = require('axios')
+axios.create({
+  headers: {'content-type': 'application/x-www-form-urlencoded'}
+})
 
 // default port where dev server listens for incoming traffic
 var port = process.env.PORT || config.dev.port
