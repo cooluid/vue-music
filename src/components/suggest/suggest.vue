@@ -94,6 +94,7 @@
         } else {
           this.instertSong(item)
         }
+        this.$emit('select')
       },
       listScroll() {
         this.$emit('listScroll')

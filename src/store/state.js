@@ -1,7 +1,8 @@
 /**
  * Created by dell on 2018/3/20.
  */
-import {playMode} from 'common/js/config'
+import { playMode } from 'common/js/config'
+import { loadSearch } from 'common/js/cache'
 
 const state = {
   singer: {},
@@ -12,6 +13,7 @@ const state = {
   mode: playMode.sequence,
   currentIndex: -1,
   disc: {},
-  topList: {}
+  topList: {},
+  searchHistory: loadSearch()
 }
 export default state
