@@ -90,11 +90,12 @@
           </progress-circle>
         </div>
 
-        <div class="control">
+        <div class="control" @click="showPlaylist">
           <i class="icon-playlist"></i>
         </div>
       </div>
     </transition>
+    <playlist ref="playlist"></playlist>
     <audio :src="currentSong.url"
            ref="audio"
            @canplay="ready"
@@ -106,15 +107,16 @@
 </template>
 
 <script type="text/ecmascript-6">
-  import {mapGetters, mapMutations} from 'vuex'
+  import { mapGetters, mapMutations } from 'vuex'
   import animations from 'create-keyframe-animation'
-  import {prefixStyle} from 'common/js/dom'
+  import { prefixStyle } from 'common/js/dom'
   import ProgressBar from 'base/progress-bar/progress-bar'
   import ProgressCircle from 'base/progress-circle/progress-circle'
-  import {playMode} from 'common/js/config'
-  import {shuffle} from 'common/js/util'
+  import { playMode } from 'common/js/config'
+  import { shuffle } from 'common/js/util'
   import Lyric from 'lyric-parser'
   import Scroll from 'base/scroll/scroll'
+  import Playlist from 'components/playlist/playlist'
 
   const transform = prefixStyle('transform')
   const transitionDuration = prefixStyle('transitionDuration')
@@ -166,6 +168,9 @@
       )
     },
     methods: {
+      showPlaylist() {
+        this.$refs.playlist.show()
+      },
       back(b) {
         this.setFullScreen(b)
       },
@@ -428,7 +433,8 @@
     components: {
       ProgressBar,
       ProgressCircle,
-      Scroll
+      Scroll,
+      Playlist
     }
   }
 </script>
