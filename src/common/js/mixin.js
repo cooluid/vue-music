@@ -1,7 +1,10 @@
 /**
  * Created by dell on 2018/3/28.
  */
-import {mapGetters} from 'vuex'
+import { mapGetters, mapMutations } from 'vuex'
+import { playMode } from 'common/js/config'
+import { shuffle } from 'common/js/util'
+
 export const playlistMixin = {
   computed: {
     ...mapGetters([
@@ -23,5 +26,46 @@ export const playlistMixin = {
     handlePlaylist() {
       throw new Error('component must implement handlePlaylist method')
     }
+  }
+}
+
+export const playerMixin = {
+  computed: {
+    modeIcon() {
+      return this.mode === playMode.sequence ? 'icon-sequence' : this.mode === playMode.loop ? 'icon-loop' : 'icon-random'
+    },
+    ...mapGetters([
+      'sequenceList',
+      'currentSong',
+      'playlist',
+      'mode'
+    ])
+  },
+  methods: {
+    changeMode() {
+      const mode = (this.mode + 1) % 3
+      this.setPlayerMode(mode)
+      let list = null
+      if (this.mode === playMode.random) {
+        list = shuffle(this.sequenceList)
+      } else {
+        list = this.sequenceList
+      }
+
+      this.resetCurrentIndex(list)
+      this.setPlaylist(list)
+    },
+    resetCurrentIndex(list) {
+      let index = list.findIndex((item) => {
+        return item.id === this.currentSong.id
+      })
+      this.setCurrentIndex(index)
+    },
+    ...mapMutations({
+      setPlayingState: 'SET_PLAYING_STATE',
+      setCurrentIndex: 'SET_CURRENTINDEX',
+      setPlayerMode: 'SET_MODE',
+      setPlaylist: 'SET_PLAY_LIST'
+    })
   }
 }
