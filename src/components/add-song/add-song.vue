@@ -61,7 +61,11 @@
         this.onQueryChange(query)
         if (!query || query === '') {
           setTimeout(() => {
-            this.$refs.searchList.refresh()
+            if (this.currentIndex === 0) {
+              this.$refs.songList.refresh()
+            } else {
+              this.$refs.searchList.refresh()
+            }
           }, 20)
         }
       },
