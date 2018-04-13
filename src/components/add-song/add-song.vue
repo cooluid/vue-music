@@ -8,14 +8,19 @@
         </div>
       </div>
       <div class="search-box-wrapper">
-        <search-box @query="onQueryChange" placeholder="搜索歌曲"></search-box>
+        <search-box @queryChange="queryChange" ref="searchBox" @query="onQueryChange" placeholder="搜索歌曲"></search-box>
       </div>
       <div class="shortcut" v-show="!query">
         <switches :switches="switches" :currentIndex="currentIndex" @switch="switchItem"></switches>
         <div class="list-wrapper">
-          <scroll class="list-scroll" v-if="currentIndex === 0" :data="playHistory">
+          <scroll ref="songList" class="list-scroll" v-if="currentIndex === 0" :data="playHistory">
             <div class="list-inner">
               <song-list :songs="playHistory" @select="selectSong"></song-list>
+            </div>
+          </scroll>
+          <scroll ref="searchList" class="list-scroll" v-if="currentIndex === 1" :data="searchHistory">
+            <div class="list-inner">
+              <search-list @delete="deleteSearchHistory" @select="addQuery" :searches="searchHistory"></search-list>
             </div>
           </scroll>
         </div>
@@ -36,6 +41,7 @@
   import { mapGetters, mapActions } from 'vuex'
   import SongList from 'base/song-list/song-list'
   import Song from 'common/js/song'
+  import SearchList from 'base/search-list/search-list'
   export default{
     mixins: [searchMixin],
     data() {
@@ -51,6 +57,14 @@
       }
     },
     methods: {
+      queryChange(query) {
+        console.log(111111111111111111111111)
+        if (!query || query === '') {
+          setTimeout(() => {
+            this.$refs.searchList.refresh()
+          }, 20)
+        }
+      },
       selectSong(song, index) {
         if (index !== 0) {
           this.instertSong(new Song(song))
@@ -64,6 +78,13 @@
       },
       show() {
         this.showFlag = true
+        setTimeout(() => {
+          if (this.currentIndex === 0) {
+            this.$refs.songList.refresh()
+          } else {
+            this.$refs.searchList.refresh()
+          }
+        }, 20)
       },
       hide() {
         this.showFlag = false
@@ -82,7 +103,8 @@
       Suggest,
       Switches,
       Scroll,
-      SongList
+      SongList,
+      SearchList
     }
   }
 </script>
