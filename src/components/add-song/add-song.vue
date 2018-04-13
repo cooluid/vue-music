@@ -8,29 +8,55 @@
         </div>
       </div>
       <div class="search-box-wrapper">
+        <search-box @query="onQueryChange" placeholder="搜索歌曲"></search-box>
       </div>
-      <div class="shortcut">
+      <div class="shortcut" v-show="!query">
+        <switches :switches="switches" :currentIndex="currentIndex" @switch="switchItem"></switches>
       </div>
-      <div class="search-result">
+      <div class="search-result" v-show="query">
+        <suggest @select="selectSuggest" :query="query" :showSinger="showSinger"></suggest>
       </div>
     </div>
   </transition>
 </template>
 
 <script type="text/ecmascript-6">
+  import SearchBox from 'base/search-box/search-box'
+  import Suggest from 'components/suggest/suggest'
+  import { searchMixin } from 'common/js/mixin'
+  import Switches from 'base/switches/switches'
   export default{
+    mixins: [searchMixin],
     data() {
       return {
-        showFlag: false
+        showFlag: false,
+        showSinger: false,
+        currentIndex: 0,
+        switches: [{
+          name: '最近播放'
+        }, {
+          name: '搜索历史'
+        }]
       }
     },
     methods: {
+      switchItem(index) {
+        this.currentIndex = index
+      },
+      selectSuggest() {
+        this.saveSearch()
+      },
       show() {
         this.showFlag = true
       },
       hide() {
         this.showFlag = false
       }
+    },
+    components: {
+      SearchBox,
+      Suggest,
+      Switches
     }
   }
 </script>
