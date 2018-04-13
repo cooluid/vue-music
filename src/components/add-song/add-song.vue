@@ -8,7 +8,7 @@
         </div>
       </div>
       <div class="search-box-wrapper">
-        <search-box @queryChange="queryChange" ref="searchBox" @query="onQueryChange" placeholder="搜索歌曲"></search-box>
+        <search-box ref="searchBox" @query="queryChange" placeholder="搜索歌曲"></search-box>
       </div>
       <div class="shortcut" v-show="!query">
         <switches :switches="switches" :currentIndex="currentIndex" @switch="switchItem"></switches>
@@ -58,7 +58,7 @@
     },
     methods: {
       queryChange(query) {
-        console.log(111111111111111111111111)
+        this.onQueryChange(query)
         if (!query || query === '') {
           setTimeout(() => {
             this.$refs.searchList.refresh()

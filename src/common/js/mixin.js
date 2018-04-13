@@ -93,7 +93,6 @@ export const searchMixin = {
     },
     onQueryChange(query) {
       this.query = query
-      // this.$refs.searchBox$emit('queryChange', query)
     },
     ...mapActions([
       'saveSearchHistory',
