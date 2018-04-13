@@ -12,6 +12,13 @@
       </div>
       <div class="shortcut" v-show="!query">
         <switches :switches="switches" :currentIndex="currentIndex" @switch="switchItem"></switches>
+        <div class="list-wrapper">
+          <scroll class="list-scroll" v-if="currentIndex === 0" :data="playHistory">
+            <div class="list-inner">
+              <song-list :songs="playHistory" @select="selectSong"></song-list>
+            </div>
+          </scroll>
+        </div>
       </div>
       <div class="search-result" v-show="query">
         <suggest @select="selectSuggest" :query="query" :showSinger="showSinger"></suggest>
@@ -25,6 +32,10 @@
   import Suggest from 'components/suggest/suggest'
   import { searchMixin } from 'common/js/mixin'
   import Switches from 'base/switches/switches'
+  import Scroll from 'base/scroll/scroll'
+  import { mapGetters, mapActions } from 'vuex'
+  import SongList from 'base/song-list/song-list'
+  import Song from 'common/js/song'
   export default{
     mixins: [searchMixin],
     data() {
@@ -40,6 +51,11 @@
       }
     },
     methods: {
+      selectSong(song, index) {
+        if (index !== 0) {
+          this.instertSong(new Song(song))
+        }
+      },
       switchItem(index) {
         this.currentIndex = index
       },
@@ -51,12 +67,22 @@
       },
       hide() {
         this.showFlag = false
-      }
+      },
+      ...mapActions([
+        'instertSong'
+      ])
+    },
+    computed: {
+      ...mapGetters([
+        'playHistory'
+      ])
     },
     components: {
       SearchBox,
       Suggest,
-      Switches
+      Switches,
+      Scroll,
+      SongList
     }
   }
 </script>
