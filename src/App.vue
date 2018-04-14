@@ -8,11 +8,9 @@
             </keep-alive>
             <player></player>
         </div>
-        <div class="tips">
+        <div class="tips" v-else>
             <p>请用手机访问</p>
-            <div class="icon">
-                <img src="./QRcode.png" width="200" height="200">
-            </div>
+            <img class="icon" src="./QRcode.png" width="200" height="200">
         </div>
     </div>
 </template>
