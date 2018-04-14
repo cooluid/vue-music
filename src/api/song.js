@@ -1,7 +1,7 @@
 import { commonParams } from './config'
 import axios from 'axios'
 
-const debug = process.env.NODE_ENV !== 'production'
+// const debug = process.env.NODE_ENV !== 'production'
 
 export function getLyric (mid) {
   const url = 'api/lyric'
