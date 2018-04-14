@@ -1,11 +1,9 @@
-/**
- * Created by dell on 2018/3/20.
- */
-import { getLyric } from 'api/song'
+import { getLyric, getSongsUrl } from 'api/song'
 import { ERR_OK } from 'api/config'
 import { Base64 } from 'js-base64'
+
 export default class Song {
-  constructor ({id, mid, singer, name, album, duration, image, url}) {
+  constructor({id, mid, singer, name, album, duration, image, url}) {
     this.id = id
     this.mid = mid
     this.singer = singer
@@ -13,10 +11,11 @@ export default class Song {
     this.album = album
     this.duration = duration
     this.image = image
+    this.filename = `C400${this.mid}.m4a`
     this.url = url
   }
 
-  getLyric () {
+  getLyric() {
     if (this.lyric) {
       return Promise.resolve(this.lyric)
     }
@@ -33,8 +32,8 @@ export default class Song {
     })
   }
 }
-export function createSong (musicData) {
-  // console.log(musicData)
+
+export function createSong(musicData) {
   return new Song({
     id: musicData.songid,
     mid: musicData.songmid,
@@ -42,17 +41,38 @@ export function createSong (musicData) {
     name: musicData.songname,
     album: musicData.albumname,
     duration: musicData.interval,
-    image: `https://y.gtimg.cn/music/photo_new/T001R300x300M000${musicData.singer[0].mid}.jpg?max_age=2592000`,
-    url: `http://isure.stream.qqmusic.qq.com/C100${musicData.songmid}.m4a?fromtag=32`
+    image: `https://y.gtimg.cn/music/photo_new/T002R300x300M000${musicData.albummid}.jpg?max_age=2592000`,
+    url: musicData.url
   })
 }
 
-function filterSinger (singer) {
+function filterSinger(singer) {
   let ret = []
-  if (!singer) return ''
+  if (!singer) {
+    return ''
+  }
   singer.forEach((s) => {
     ret.push(s.name)
   })
-  // console.log(ret)
   return ret.join('/')
+}
+
+export function isValidMusic(musicData) {
+  return musicData.songid && musicData.albummid && (!musicData.pay || musicData.pay.payalbumprice === 0)
+}
+
+export function processSongsUrl(songs) {
+  if (!songs.length) {
+    return Promise.resolve(songs)
+  }
+  return getSongsUrl(songs).then((res) => {
+    if (res.code === ERR_OK) {
+      let midUrlInfo = res.url_mid.data.midurlinfo
+      midUrlInfo.forEach((info, index) => {
+        let song = songs[index]
+        song.url = `http://dl.stream.qqmusic.qq.com/${info.purl}`
+      })
+    }
+    return songs
+  })
 }

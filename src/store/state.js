@@ -1,8 +1,5 @@
-/**
- * Created by dell on 2018/3/20.
- */
 import { playMode } from 'common/js/config'
-import { loadSearch, loadPlay, loadFavorite } from 'common/js/cache'
+import { loadSearch } from 'common/js/cache'
 
 const state = {
   singer: {},
@@ -15,7 +12,8 @@ const state = {
   disc: {},
   topList: {},
   searchHistory: loadSearch(),
-  playHistory: loadPlay(),
-  favoriteList: loadFavorite()
+  playHistory: [],
+  favoriteList: []
 }
+
 export default state

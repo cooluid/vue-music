@@ -45,6 +45,6 @@
             line-height: 30px
         .blog
             text-align: right
-            margin: 100px 10px 0 0
-            color: #222e2f
+            margin: 80px 10px 0 0
+            color: #283a3c
 </style>

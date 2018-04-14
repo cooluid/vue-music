@@ -1,26 +1,21 @@
 export function hasClass(el, className) {
-  let reg = new RegExp('(^|\\s)' + className + '(\\s|$)')
-  return reg.test(el.className)
+  return el.classList.contains(className)
 }
+
 export function addClass(el, className) {
-  if (hasClass(el, className)) {
-    return
-  }
-  let newClass = el.className.split(' ')
-  newClass.push(className)
-  el.className = newClass.join(' ')
+  el.classList.add(className)
 }
 
 export function getData(el, name, val) {
   const prefix = 'data-'
-  name = prefix + name
   if (val) {
-    return el.setAttribute(name, val)
+    return el.setAttribute(prefix + name, val)
   }
-  return el.getAttribute(name)
+  return el.getAttribute(prefix + name)
 }
 
 let elementStyle = document.createElement('div').style
+
 let vendor = (() => {
   let transformNames = {
     webkit: 'webkitTransform',
@@ -29,12 +24,14 @@ let vendor = (() => {
     ms: 'msTransform',
     standard: 'transform'
   }
+
   for (let key in transformNames) {
     if (elementStyle[transformNames[key]] !== undefined) {
       return key
     }
-    return false
   }
+
+  return false
 })()
 
 export function prefixStyle(style) {
