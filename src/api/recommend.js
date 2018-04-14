@@ -19,8 +19,8 @@ export function getRecommend() {
 }
 
 export function getDiscList() {
-  // const url = '/getDiscList'
-  const url = debug ? 'api/getDiscList' : 'http://xxxx.cool/music/api/getDiscList'
+  const url = 'api/getDiscList'
+  // const url = debug ? 'api/getDiscList' : 'http://xxxx.cool/music/api/getDiscList'
   const data = Object.assign({}, commonParams, {
     platform: 'yqq',
     hostUin: 0,
