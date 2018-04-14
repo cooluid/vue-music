@@ -27,7 +27,7 @@
     .about
         color: $color-text-l
         text-align: center
-        margin-top: 80px
+        margin-top: 50px
         .icon
             display: inline-block
             width: 30px
