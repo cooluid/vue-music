@@ -8,10 +8,10 @@ import store from './store'
 
 import 'common/stylus/index.styl'
 
-import VConsole from 'vconsole'
-/* eslint-disable no-unused-vars */
-var vConsole = new VConsole()
-console.log('test')
+// import VConsole from 'vconsole'
+// /* eslint-disable no-unused-vars */
+// var vConsole = new VConsole()
+// console.log('test')
 
 fastclick.attach(document.body)
 Vue.use(VueLazyLoad, {
