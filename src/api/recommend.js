@@ -1,13 +1,13 @@
 /**
  * Created by dell on 2018/3/14.
  */
-import {commonParams, options} from './config'
+import { commonParams, options } from './config'
 import jsonp from 'common/js/jsonp'
 import axios from 'axios'
 
 const debug = process.env.NODE_ENV !== 'production'
 
-export function getRecommend() {
+export function getRecommend () {
   const url = 'https://c.y.qq.com/musichall/fcgi-bin/fcg_yqqhomepagerecommend.fcg'
   const data = Object.assign({}, commonParams, {
     platform: 'h5',
@@ -18,9 +18,9 @@ export function getRecommend() {
   return jsonp(url, data, options)
 }
 
-export function getDiscList() {
-  const url = 'api/getDiscList'
-  // const url = debug ? 'api/getDiscList' : 'http://xxxx.cool/music/api/getDiscList'
+export function getDiscList () {
+  // const url = 'api/getDiscList'
+  const url = debug ? '/api/getDiscList' : 'http://xxxx.cool/music/api/getDiscList'
   const data = Object.assign({}, commonParams, {
     platform: 'yqq',
     hostUin: 0,
@@ -39,7 +39,7 @@ export function getDiscList() {
   })
 }
 
-export function getSongList(disstid) {
+export function getSongList (disstid) {
   const url = debug ? 'api/getCdInfo' : 'http://xxxx.cool/music/api/getCdInfo'
 
   const data = Object.assign({}, commonParams, {

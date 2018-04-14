@@ -1,11 +1,11 @@
 import { commonParams } from './config'
 import axios from 'axios'
 
-// const debug = process.env.NODE_ENV !== 'production'
+const debug = process.env.NODE_ENV !== 'production'
 
 export function getLyric (mid) {
-  const url = 'api/lyric'
-  // const url = debug ? 'api/lyric' : 'http://xxxx.cool/music/api/lyric'
+  // const url = 'api/lyric'
+  const url = debug ? '/api/lyric' : 'http://xxxx.cool/music/api/lyric'
 
   const data = Object.assign({}, commonParams, {
     pcachetime: +new Date(),
