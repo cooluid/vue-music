@@ -1,6 +1,6 @@
 <template>
     <div id="app" @touchmove.prevent>
-        <div v-if="!isPC">
+        <div v-if="!isPC || debug">
             <m-header></m-header>
             <tab></tab>
             <keep-alive>
@@ -8,10 +8,7 @@
             </keep-alive>
             <player></player>
         </div>
-        <div class="tips" v-else>
-            <p>请用手机访问</p>
-            <img class="icon" src="./QRcode.png" width="200" height="200">
-        </div>
+        <global-tips v-else></global-tips>
     </div>
 </template>
 
@@ -20,28 +17,25 @@
   import Player from 'components/player/player'
   import Tab from 'components/tab/tab'
   import { isPCsystem } from 'common/js/util'
+  import GlobalTips from 'components/global-tips/global-tips'
+
+  const debug = process.env.NODE_ENV !== 'production'
 
   export default {
-    computed: {
-      isPC () {
-        return isPCsystem()
+    data () {
+      return {
+        debug: debug,
+        isPC: isPCsystem()
       }
     },
     components: {
       MHeader,
       Tab,
-      Player
+      Player,
+      GlobalTips
     }
   }
 </script>
 
 <style scoped lang="stylus" rel="stylesheet/stylus">
-    .tips
-        text-align: center
-        margin-top: 100px
-        .icon
-            margin-top: 50px
-            margin-left: auto
-            margin-right: auto
-            width: 200px
 </style>
