@@ -1,19 +1,19 @@
 <template>
     <div class="tab">
         <router-link tag="div" class="tab-item" to="/love">
-            <span class="tab-link">李元英</span>
+            <span class="tab-link">每</span>
         </router-link>
         <router-link tag="div" class="tab-item" to="/love2">
-            <span class="tab-link">每天</span>
+            <span class="tab-link">天</span>
         </router-link>
         <router-link tag="div" class="tab-item" to="/love3">
-            <span class="tab-link">都要</span>
+            <span class="tab-link">都</span>
         </router-link>
         <router-link tag="div" class="tab-item" to="/love4">
-            <span class="tab-link">快乐</span>
+            <span class="tab-link">要</span>
         </router-link>
         <router-link tag="div" class="tab-item" to="/search">
-        <span class="tab-link">哦</span>
+        <span class="tab-link">快乐</span>
         </router-link>
     </div>
 </template>
