@@ -3,7 +3,7 @@
         <div class="background" v-show="isinit">
             <img width="100%" height="100%" src="./lovebg.jpeg">
         </div>
-        <div class="tips" v-show="!isinit">点击播放</div>
+        <div class="tips" v-show="!isinit">点击这里</div>
     </div>
 </template>
 
@@ -49,11 +49,12 @@
         .background
             position: fixed
             /*left: 0*/
-            margin-top: 12px
+            margin-top: 7px
             /*width: 100%*/
             z-index: -1
         .tips
             margin-top: 200px
             color: $color-theme
             text-align: center
+            font-size: 30px
 </style>

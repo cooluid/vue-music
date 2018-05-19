@@ -17,7 +17,7 @@
         .background
             position: absolute
             left: 0
-            top: 100px
+            top: 95px
             width: 100%
             /*height: 100%*/
             z-index: -1
