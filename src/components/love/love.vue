@@ -1,6 +1,6 @@
 <template>
     <div class="love" @click="stageTouch">
-        <div class="background">
+        <div class="background" v-show="isinit">
             <img width="100%" height="100%" src="./lovebg.jpeg">
         </div>
         <div class="tips" v-show="!isinit">点击播放</div>
@@ -47,13 +47,13 @@
     .love
         width: 100%
         .background
-            /*position: absolute*/
+            position: fixed
             /*left: 0*/
             margin-top: 12px
             /*width: 100%*/
             z-index: -1
         .tips
-            bottom: 50px
+            margin-top: 200px
             color: $color-theme
             text-align: center
 </style>
