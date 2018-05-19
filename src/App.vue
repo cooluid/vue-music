@@ -1,7 +1,7 @@
 <template>
     <div id="app" @touchmove.prevent>
         <div v-if="!isPC || debug">
-            <m-header></m-header>
+            <!--<m-header></m-header>-->
             <tab></tab>
             <keep-alive>
                 <router-view></router-view>

@@ -8,7 +8,7 @@
         >
             <div class="normal-player" v-show="fullScreen">
                 <div class="background">
-                    <img width="100%" height="100%" :src="currentSong.image">
+                    <img width="100%" height="100%" src="../love/lovebg.jpeg">
                 </div>
                 <div class="top">
                     <div class="back" @click="back">
@@ -25,7 +25,7 @@
                     <div class="middle-l" ref="middleL">
                         <div class="cd-wrapper" ref="cdWrapper">
                             <div class="cd" ref="imageWrapper">
-                                <img ref="image" :class="cdCls" class="image" :src="currentSong.image">
+                                <img ref="image" :class="cdCls" class="image" src="./cdbg.jpeg">
                             </div>
                         </div>
                         <div class="playing-lyric-wrapper">
@@ -83,7 +83,7 @@
             <div class="mini-player" v-show="!fullScreen" @click="open">
                 <div class="icon">
                     <div class="imgWrapper" ref="miniWrapper">
-                        <img ref="miniImage" :class="cdCls" width="40" height="40" :src="currentSong.image">
+                        <img ref="miniImage" :class="cdCls" width="40" height="40" src="./cdbg.jpeg">
                     </div>
                 </div>
                 <div class="text">
