@@ -13,7 +13,7 @@
     props: {
       placeholder: {
         type: String,
-        default: '搜索歌曲、歌手'
+        default: '刚好遇见你-李元英'
       }
     },
     data() {

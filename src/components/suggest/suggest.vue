@@ -103,6 +103,7 @@
           this.setSinger(singer)
         } else {
           this.insertSong(item)
+          console.log(item)
         }
         this.$emit('select', item)
       },
