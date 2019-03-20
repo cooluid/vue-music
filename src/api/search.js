@@ -4,8 +4,7 @@ import axios from 'axios'
 const debug = process.env.NODE_ENV !== 'production'
 
 export function getHotKey () {
-  // const url = 'https://c.y.qq.com/splcloud/fcgi-bin/gethotkey.fcg'
-  const url = debug ? '/api/search' : 'http://xxxx.cool/music/api/search'
+  const url = 'https://c.y.qq.com/splcloud/fcgi-bin/gethotkey.fcg'
 
   const data = Object.assign({}, commonParams, {
     uin: 0,
@@ -17,8 +16,8 @@ export function getHotKey () {
 }
 
 export function search (query, page, zhida, perpage) {
-  const url = 'https://c.y.qq.com/soso/fcgi-bin/search_for_qq_cp'
-
+  // const url = 'https://c.y.qq.com/soso/fcgi-bin/search_for_qq_cp'
+  const url = debug ? '/api/search' : 'http://xxxx.cool/music/api/search'
   const data = Object.assign({}, commonParams, {
     w: query,
     p: page,
