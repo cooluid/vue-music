@@ -1,6 +1,6 @@
 <template>
     <div id="app" @touchmove.prevent>
-        <div v-if="!isPC || debug">
+        <div>
             <m-header></m-header>
             <tab></tab>
             <keep-alive>
@@ -8,7 +8,6 @@
             </keep-alive>
             <player></player>
         </div>
-        <global-tips v-else></global-tips>
     </div>
 </template>
 

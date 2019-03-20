@@ -8,11 +8,10 @@
             服务端通讯：axios、jsonp <br>
             移动端滚动库：better-scroll <br>
             构建工具：webpack 2.0 <br>
-            数据：QQ音乐 <br>
             源码：es6
         </p>
         <p class="blog">
-            blog: xxxx.cool
+            http://5200.me
         </p>
     </div>
 </template>
